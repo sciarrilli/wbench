@@ -1,0 +1,8 @@
+- name: configure /etc/motd
+  copy: src=motd dest=/etc/motd
+
+- name: configure bash colors for user
+  copy: src=bashrc dest=/home/cumulus/.bashrc
+
+- name: configure bash colors for root
+  copy: src=bashrc dest=/root/.bashrc
