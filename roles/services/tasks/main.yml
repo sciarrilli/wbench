@@ -24,7 +24,7 @@
   apt: pkg=ansible state=present
 
 - name: Git clone cldemo-indie
-  git: repo=https://github.com/CumulusNetworks/cldemo-automation-ansible.git dest=/home/cumulus/cldemo-automation-ansible
+  git: repo=https://github.com/sciarrilli/cldemo-indie.git dest=/home/cumulus/cldemo-indie
 
 - name: configure dhcpd.conf
   template: src=dhcpd.conf.j2 dest=/etc/dhcp/dhcpd.conf
@@ -35,7 +35,7 @@
   notify: restart dhcp
 
 - name: configure dhcpd.hosts
-  copy: src=dhcpd.hosts dest=/etc/dhcp/dhcpd.hosts
+  template: src=dhcpd.hosts.j2 dest=/etc/dhcp/dhcpd.hosts
   notify: restart dhcp
 
 - name: update named.conf.locals bind file
@@ -67,3 +67,12 @@
 
 - name: pause and let bind restart
   pause: seconds=10
+
+- name: copy ztp script
+  template: src=ztp.sh.j2 dest=/var/www/ztp.sh
+
+- name: copy ptm toplolgy
+  copy: src=topology.dot dest=/var/www/toplolgy.dot
+
+- name: copy license file
+  copy: src=license.lic dest=/var/www/license.lic
