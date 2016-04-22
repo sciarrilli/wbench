@@ -73,7 +73,7 @@
 - name: copy ztp script
   template: src=ztp.sh.j2 dest=/var/www/ztp.sh
 
-- name: copy ptm toplolgy
+- name: copy ptm topology
   copy: src=topology.dot dest=/var/www/topology.dot
 
 - name: copy license file
