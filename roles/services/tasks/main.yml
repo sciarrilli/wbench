@@ -25,6 +25,8 @@
 
 - name: Git clone cldemo-indie
   git: repo=https://github.com/sciarrilli/cldemo-indie.git dest=/home/cumulus/cldemo-indie
+  become: yes
+  beccome_user: cumulus
 
 - name: configure dhcpd.conf
   template: src=dhcpd.conf.j2 dest=/etc/dhcp/dhcpd.conf
@@ -72,7 +74,7 @@
   template: src=ztp.sh.j2 dest=/var/www/ztp.sh
 
 - name: copy ptm toplolgy
-  copy: src=topology.dot dest=/var/www/toplolgy.dot
+  copy: src=topology.dot dest=/var/www/topology.dot
 
 - name: copy license file
   copy: src=license.lic dest=/var/www/license.lic
